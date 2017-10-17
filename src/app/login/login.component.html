@@ -1,0 +1,45 @@
+<div class="login-wrapper">
+  <div class="container">
+    <div class="error-div">
+      <div class="login-error" [hidden]="!loginFail">
+        <div>
+          <i class="fa fa-exclamation-circle icon-size" aria-hidden="true"></i>
+          <span class="err-msg">Something is not right, try again.</span>
+        </div>
+      </div>
+    </div>
+    <div class="profile--open">
+      <div class="avatar">
+        <span href="" target="_blank"><img src="assets/img/logo.png"></span>
+      </div>
+      <form class="profile__form" name="form" #form="ngForm" novalidate>
+        <div>
+          <div class="field">
+            <mat-form-field class="example-full-width">
+              <input matInput [(ngModel)]="user.username" id="username" name='username' required [errorStateMatcher]="myErrorStateMatcher"
+                placeholder="Username" #username="ngModel" >
+              <mat-error>Username required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="field">
+            <mat-form-field class="example-full-width">
+              <input matInput type="password" [(ngModel)]="user.password" id="password" name='password' required [errorStateMatcher]="myErrorStateMatcher"
+                placeholder="Password" #password='ngModel'>
+              <mat-error>Password required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="profile__footer">
+            <button mat-raised-button color="primary" class="btn-lg" (click)="getLogin()" *ngIf="!tryingToLogin" [disabled]="!form.valid">Login</button>
+            <button mat-raised-button disabled class="btn-lg" *ngIf="tryingToLogin">Please Wait... </button>
+            <!-- <div>
+                            <a class="forgot_pass" href="#">Forgot Password</a>
+                          </div> -->
+          </div>
+        </div>
+      </form>
+      <div>
+        <p>Copyright @2017 XXXXXXX Financial Solutions, Inc.</p>
+      </div>
+    </div>
+  </div>
+</div>

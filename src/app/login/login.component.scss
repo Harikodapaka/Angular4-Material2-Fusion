@@ -1,0 +1,128 @@
+.login-wrapper {
+    width: 100%;
+    float: left;
+    background-color: rgba(26, 131, 179, 0.97);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #e9eaed url('../../assets/img/login-bg.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+.container {
+    position: absolute;
+    width: 29.3em;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -70%);
+    animation: intro .7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.profile {
+    position: relative;
+}
+
+.profile--open {
+	width: 24.85em;
+    height: 27rem;
+}
+
+.profile--open .profile__form {
+    visibility: visible;
+    height: auto;
+    opacity: 1;
+    transform: translateY(0em);
+    padding-top: 8em;
+}
+
+
+.profile--open .profile__avatar {
+    transform: translate(-97%, 1.8em);
+    border-radius: 50%;
+}
+
+.profile__form {
+    position: relative;
+    background: white;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    padding: 3em;
+    border-radius: .25em;
+    -webkit-filter: drop-shadow(0 0 2em rgba(0, 0, 0, 0.2));
+    transition: opacity .4s ease-in-out, height .4s ease-in-out, transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.example-full-width {
+    width: 100%;
+}
+
+@keyframes intro {
+    from {
+        opacity: 0;
+        top: 0;
+    }
+    to {
+        opacity: 1;
+        top: 50%;
+    }
+}
+
+.container p {
+    color: #595757;
+    text-align: center;
+    padding: 8px 0px;
+    font-weight: 100;
+    font-size: 12px;
+}
+
+.btn-lg {
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+	-webkit-border-radius: 5px;
+	margin-top: 1rem;
+}
+
+.error-div {
+    height: 10px;
+    margin-bottom: 72px;
+}
+
+.login-error {
+    color: #FFFFFF;
+    background-color: #ec5a4c;
+    padding: 20px;
+    width: 355px;
+    position: relative;
+    margin-bottom: 10px;
+    top: 0;
+    left: 0;
+    border-radius: 6px;
+    border: 1px solid #ec5a4c;
+    font-size: 14px;
+    animation: bounceInDown 5s ease-in;
+}
+
+.login-error .icon-size {
+    font-size: 30px;
+    vertical-align: middle;
+}
+
+.login-error .err-msg {
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.avatar { text-align: center; }
+
+.avatar img {
+	border-radius: 20rem;
+    position: absolute;
+    z-index: 1;
+    transform: translateX(-50%);
+	background: #745e7c;
+    -webkit-transform: translate(-50%, 1.8em);
+    transform: translate(-50%, 1em);
+	width: 6rem;
+}

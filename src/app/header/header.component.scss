@@ -1,0 +1,53 @@
+.flex-spacer[_ngcontent-c1] {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+.profileNavBar {
+    width: 25rem;
+}
+.navMenu{
+    width: 17rem;
+}
+.navMenu h3 {
+    border: none;
+    font-size: 10px;
+    letter-spacing: 1px;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 0;
+    padding: 0 16px;
+    background: rgba(0,0,0,.32);
+    color: hsla(0,0%,100%,.87);
+}
+.navMenu ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.navMenu li{
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    margin: 0;
+    padding: 0;
+    border-color: rgba(0,0,0,.06);
+    color: rgba(0,0,0,.54);
+}
+.navMenu li a:hover {
+    background: #fafafa;
+    color: #3f51b5;
+}
+.navMenu li a{
+    box-sizing: border-box;
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 47px;
+    text-decoration: none;
+    transition: all .3s;
+    padding: 0 16px;
+    position: relative;
+    outline: none;
+    color: rgba(0,0,0,.54);
+}

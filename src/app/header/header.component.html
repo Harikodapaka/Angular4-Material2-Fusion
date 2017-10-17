@@ -1,0 +1,78 @@
+<section class="app flex-container" fxLayout="column" fxLayoutAlign="start stretch">
+  <mat-sidenav-container fxFlex fullscreen>
+    <!-- main route links -->
+    <mat-sidenav #sidenav mode="over" class='navMenu'>
+      <nav>
+        <h3>Navigation</h3>
+        <ul>
+          <li>
+            <a href="#">
+                  Menu
+                </a>
+          </li>
+          <li>
+            <a href="#">
+                  Sidenav
+                </a>
+          </li>
+          <li>
+            <a href="#">
+                  Toolbar
+                </a>
+          </li>
+        </ul>
+      </nav>
+    </mat-sidenav>
+    <!-- profile side navigaton -->
+    <mat-sidenav #profilebar mode="over" align="end" opened='{{openProfilebar}}' class="mat-elevation-z6 profileNavBar">
+      <mat-tab-group>
+        <mat-tab label="Profile"></mat-tab>
+        <mat-tab label="Timeline"></mat-tab>
+      </mat-tab-group>
+    </mat-sidenav>
+
+    <mat-toolbar color="primary" class="mat-elevation-z10">
+      <button mat-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+      <span>Dashboard</span>
+      <div _ngcontent-c1="" class="flex-spacer"></div>
+      <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Feedback"> 
+      <mat-icon>feedback</mat-icon>
+   </button>
+      <button mat-icon-button [matMenuTriggerFor]="Profilemenu" matTooltip="Profile">
+    <mat-icon>person</mat-icon>
+ </button>
+    </mat-toolbar>
+    <!-- feedback menu in topbar -->
+    <mat-menu x-position="before" #menu="matMenu">
+      <button mat-menu-item>
+     <mat-icon>dialpad</mat-icon>
+     <span>Call 9491-251-810</span>
+  </button>
+      <button mat-menu-item disabled>
+     <mat-icon>voicemail</mat-icon>
+     <span>You can't check your voicemail</span>
+  </button>
+      <button mat-menu-item>
+     <mat-icon>notifications_off</mat-icon>
+     <span>Do Not Disturb</span>
+  </button>
+    </mat-menu>
+    <!-- profile menu in top bar -->
+    <mat-menu x-position="before" #Profilemenu="matMenu">
+      <button mat-menu-item (click)="openProfileBar()">
+     <mat-icon>face</mat-icon>
+     <span>Profile</span>
+  </button>
+      <button mat-menu-item (click)='doLogout()'>
+     <mat-icon>exit_to_app</mat-icon>
+     <span>Log Off</span>
+  </button>
+    </mat-menu>
+    <!-- Main Content -->
+    <div>
+      <ng-content></ng-content>
+    </div>
+  </mat-sidenav-container>
+</section>
