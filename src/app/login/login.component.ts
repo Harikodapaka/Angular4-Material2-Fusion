@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.tryingToLogin = true;
     const user: any = {'' : ''};
     setTimeout(() => {
-      //  localStorage.setItem('currentUser', JSON.stringify( user));
+      localStorage.setItem('currentUser', JSON.stringify( user));
  }, 3000);
   }
 }
