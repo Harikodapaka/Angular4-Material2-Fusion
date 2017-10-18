@@ -1,11 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import './assets/loaders.scss';
 // some basic resets
-
-
-.app{
-    height: 100vh;    // emmet h100vh
+.app {
+    height: 100vh; // emmet h100vh
 }
+
 body {
     padding: 0;
     margin: 0;
