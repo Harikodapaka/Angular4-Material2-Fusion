@@ -14,6 +14,11 @@ export class HeaderComponent implements OnInit {
   private sidenav: MatSidenav;
   openProfilebar: any = false;
   router: Router;
+  private currentUser={
+    fname:'Hari',
+    lname:'Kodapaka',
+    email:'chaitanyakodapaka@gmail.com'
+  }
   constructor(private snackBar: MatSnackBar, private authService: AuthService, router: Router) {
     this.router = router;
   }

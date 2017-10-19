@@ -1,3 +1,33 @@
-<p>
-  user works!
-</p>
+<div>
+  <mat-card>
+    <div>
+      <mat-form-field class="width-full">
+        <input matInput [(ngModel)]="user.fname" id="fname" name='fname' required [errorStateMatcher]="myErrorStateMatcher" placeholder="First Name"
+          #fname="ngModel">
+        <mat-error>First name required</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="width-full">
+        <input matInput [(ngModel)]="user.lname" id="lname" name='lanem' required [errorStateMatcher]="myErrorStateMatcher" placeholder="Last Name"
+          #lname="ngModel">
+        <mat-error>Last name required</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="width-full">
+        <input matInput [(ngModel)]="user.email" id="email" name='email' required [errorStateMatcher]="myErrorStateMatcher" placeholder="Email"
+          #email="ngModel">
+        <mat-error>email required</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-card-footer class="card-footer">
+        <div class="text-right">
+            <button mat-fab color="primary" matTooltip="Save">
+                <mat-icon aria-label="Save">check</mat-icon>
+              </button>
+        </div>
+    </mat-card-footer>
+
+  </mat-card>
+</div>

@@ -4,7 +4,7 @@
     flex-grow: 1;
 }
 .profileNavBar {
-    width: 25rem;
+    width: 20rem;
 }
 .navMenu{
     width: 17rem;
@@ -50,4 +50,8 @@
     position: relative;
     outline: none;
     color: rgba(0,0,0,.54);
+}
+.tab-body-alignment{
+    margin:5px;
+    padding: 5px;
 }
