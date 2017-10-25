@@ -10,6 +10,12 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "keywords": [
+    "angular",
+    "Material4",
+    "angular4",
+    "angular-mterial"
+  ],
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.4.5",
