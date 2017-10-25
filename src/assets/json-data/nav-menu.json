@@ -1,0 +1,39 @@
+{
+    "details": "Navigation Menu",
+    "navMenu": [
+        {
+            "heading": "Menu Heading One",
+            "menu": [
+                {
+                    "url": "#",
+                    "label": "Menu-One"
+                },
+                {
+                    "url": "#",
+                    "label": "Menu-Two"
+                },
+                {
+                    "url": "#",
+                    "label": "Menu-Three"
+                }
+            ]
+        },
+        {
+            "heading": "Menu Heading Two",
+            "menu": [
+                {
+                    "url": "#",
+                    "label": "Menu-One-One"
+                },
+                {
+                    "url": "#",
+                    "label": "Menu-Two-Two"
+                },
+                {
+                    "url": "#",
+                    "label": "Menu-Three-Three"
+                }
+            ]
+        }
+    ]
+}

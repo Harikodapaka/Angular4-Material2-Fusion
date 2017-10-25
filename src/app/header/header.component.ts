@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav, MatSnackBar } from '@angular/material';
 import { AuthService } from '../Services/Auth/auth.service';
+import { HeaderService } from '../Services/Header/header.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,21 +10,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  navMenu: any;
 
   @ViewChild('profilebar')
   private sidenav: MatSidenav;
   openProfilebar: any = false;
   router: Router;
-  private currentUser={
-    fname:'Hari',
-    lname:'Kodapaka',
-    email:'chaitanyakodapaka@gmail.com'
+  private currentUser = {
+    fname: 'Hari',
+    lname: 'Kodapaka',
+    email: 'chaitanyakodapaka@gmail.com'
   }
-  constructor(private snackBar: MatSnackBar, private authService: AuthService, router: Router) {
+  constructor(private snackBar: MatSnackBar,
+    private authService: AuthService,
+    private headerService: HeaderService,
+    router: Router) {
     this.router = router;
   }
 
   ngOnInit() {
+    this.headerService.loadMenu().then(
+      data => {
+        this.navMenu = data.navMenu;
+      },
+      err => {
+        console.log("Error in Header Service:", err);
+
+      }
+    );
   }
   openProfileBar() {
     setTimeout(() => {
@@ -36,7 +50,7 @@ export class HeaderComponent implements OnInit {
     });
   }
   doLogout() {
-   this.authService.logout();
-   this.router.navigate(['/login']);
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
