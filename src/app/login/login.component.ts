@@ -8,8 +8,8 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   tryingToLogin: boolean;
-  myInput: any;
-  user: Object = {
+  isLoginFail: boolean = false;
+  user: any = {
     username: '',
     password: ''
   };

@@ -2,21 +2,21 @@
   <mat-card>
     <div>
       <mat-form-field class="width-full">
-        <input matInput [(ngModel)]="user.fname" id="fname" name='fname' required [errorStateMatcher]="myErrorStateMatcher" placeholder="First Name"
+        <input matInput [(ngModel)]="user.fname" id="fname" name='fname' required  placeholder="First Name"
           #fname="ngModel">
         <mat-error>First name required</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="width-full">
-        <input matInput [(ngModel)]="user.lname" id="lname" name='lanem' required [errorStateMatcher]="myErrorStateMatcher" placeholder="Last Name"
+        <input matInput [(ngModel)]="user.lname" id="lname" name='lanem' required  placeholder="Last Name"
           #lname="ngModel">
         <mat-error>Last name required</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="width-full">
-        <input matInput [(ngModel)]="user.email" id="email" name='email' required [errorStateMatcher]="myErrorStateMatcher" placeholder="Email"
+        <input matInput [(ngModel)]="user.email" id="email" name='email' required  placeholder="Email"
           #email="ngModel">
         <mat-error>email required</mat-error>
       </mat-form-field>

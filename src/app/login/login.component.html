@@ -1,7 +1,7 @@
 <div class="login-wrapper">
   <div class="container">
     <div class="error-div">
-      <div class="login-error" [hidden]="!loginFail">
+      <div class="login-error" [hidden]="!isLoginFail">
         <div>
           <i class="fa fa-exclamation-circle icon-size" aria-hidden="true"></i>
           <span class="err-msg">Something is not right, try again.</span>
@@ -16,14 +16,14 @@
         <div>
           <div class="field">
             <mat-form-field class="example-full-width">
-              <input matInput [(ngModel)]="user.username" id="username" name='username' required [errorStateMatcher]="myErrorStateMatcher"
+              <input matInput [(ngModel)]="user.username" id="username" name='username' required
                 placeholder="Username" #username="ngModel" >
               <mat-error>Username required</mat-error>
             </mat-form-field>
           </div>
           <div class="field">
             <mat-form-field class="example-full-width">
-              <input matInput type="password" [(ngModel)]="user.password" id="password" name='password' required [errorStateMatcher]="myErrorStateMatcher"
+              <input matInput type="password" [(ngModel)]="user.password" id="password" name='password' required
                 placeholder="Password" #password='ngModel'>
               <mat-error>Password required</mat-error>
             </mat-form-field>
