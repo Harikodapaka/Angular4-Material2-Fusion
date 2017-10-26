@@ -1,5 +1,23 @@
 <section class="app flex-container" fxLayout="column" fxLayoutAlign="start stretch">
   <mat-sidenav-container fxFlex fullscreen>
+    <!-- header bar -->
+    <mat-toolbar color="primary" class="mat-elevation-z10 navbar">
+      <button mat-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Dashboard</span>
+      <form class="navbar-search" (ngSubmit)="searchQuery()">
+        <mat-icon>search</mat-icon>
+        <input type="text" name="search_query" [(ngModel)]="search_query" class="search-query" placeholder="SEARCH HERE" autocomplete="off">
+      </form>
+      <div _ngcontent-c1="" class="flex-spacer"></div>
+      <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Feedback">
+        <mat-icon>feedback</mat-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="Profilemenu" matTooltip="Profile">
+        <mat-icon>person</mat-icon>
+      </button>
+    </mat-toolbar>
     <!-- main route links -->
     <mat-sidenav #sidenav mode="over" class='navMenu'>
       <nav *ngFor="let item of navMenu; index as i;">
@@ -22,24 +40,12 @@
           </div>
         </mat-tab>
         <mat-tab label="Settings">
-          contant2
+          <div class="tab-body-alignment">
+            <app-settings></app-settings>
+          </div>
         </mat-tab>
       </mat-tab-group>
     </mat-sidenav>
-
-    <mat-toolbar color="primary" class="mat-elevation-z10">
-      <button mat-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>Dashboard</span>
-      <div _ngcontent-c1="" class="flex-spacer"></div>
-      <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Feedback">
-        <mat-icon>feedback</mat-icon>
-      </button>
-      <button mat-icon-button [matMenuTriggerFor]="Profilemenu" matTooltip="Profile">
-        <mat-icon>person</mat-icon>
-      </button>
-    </mat-toolbar>
     <!-- feedback menu in topbar -->
     <mat-menu x-position="before" #menu="matMenu">
       <button mat-menu-item>
@@ -58,7 +64,7 @@
     <!-- profile menu in top bar -->
     <mat-menu x-position="before" #Profilemenu="matMenu">
       <button mat-menu-item (click)="openProfileBar()">
-        <mat-icon>face</mat-icon>
+        <mat-icon>person_outline</mat-icon>
         <span>Profile</span>
       </button>
       <button mat-menu-item (click)='doLogout()'>

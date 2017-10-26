@@ -1,3 +1,5 @@
+@import '../../styles.scss';
+
 .flex-spacer[_ngcontent-c1] {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
@@ -54,4 +56,44 @@
 .tab-body-alignment{
     margin:5px;
     padding: 5px;
+}
+.navbar {
+    display: block;
+}
+.navbar .navbar-search {
+    left: 15rem;;
+    margin: 0;
+    position: absolute;
+    right: 30rem;
+    top: 0.8rem;
+    width: auto;
+    @media screen and (max-width: $tab-max-width + 1) {
+        right: 14rem;
+      }
+}
+.navbar .navbar-search mat-icon {
+    color: #546E7A;
+    font-size: 20px;
+    left: 7px;
+    position: absolute;
+    top: 9px;
+}
+.navbar .navbar-search .search-query {
+    background-color: rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 2px;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #546E7A;
+    font-size: 14px;
+    height: 38px;
+    width: 100%;
+    padding: 0 16px 0 32px;
+    text-shadow: none;
+    transition: all .3s;
+}
+.navbar-search .search-query:active, .navbar .navbar-search .search-query:focus ,.navbar .navbar-search .search-query:hover {
+    background: #fff;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.24);
+    color: #393B3C;
 }

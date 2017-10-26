@@ -1,0 +1,163 @@
+$spinkit-size: 6em !default;
+$spinkit-spinner-color: #FAFAFA !default;
+
+
+.loading {
+    position: fixed;
+    z-index: 999;
+    height: auto;
+    width: auto;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(-45deg, #f0db91, #f29c92,#2794b7, #a4cd68, #23D5AB);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+.sk-rotating-plane {
+    width: 70px;
+    height: 70px;
+    background-color: #fff;
+    margin: auto;
+    border-radius: 2px;
+    position: absolute;
+    -webkit-animation: b 1.2s infinite ease-in-out;
+    animation: b 1.2s infinite ease-in-out;
+    top: 45%;
+    left: 48%;
+}
+@-webkit-keyframes b {
+    0% {
+        -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+    }
+    50% {
+        -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+    }
+    to {
+        -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg)
+    }
+}
+@keyframes b {
+    0% {
+        -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+    }
+    50% {
+        -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+    }
+    to {
+        -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg)
+    }
+}
+
+
+
+
+.sk-folding-cube {
+    $cubeCount: 4;
+    $animationDuration: 2.4s;
+    $delayRange: ($animationDuration / 2);
+    top: 40%;
+    width: $spinkit-size;
+    height: $spinkit-size;
+    position: relative;
+    margin: auto;
+    transform: rotateZ(45deg);
+  
+    .sk-cube {
+      float: left;
+      width: 50%;
+      height: 50%;
+      position: relative;
+      transform: scale(1.1);
+    }
+  
+    .sk-cube:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $spinkit-spinner-color;
+      animation: sk-folding-cube-angle $animationDuration infinite linear both;
+      transform-origin: 100% 100%;
+    }
+  
+    // Rotation / angle
+    @for $i from 2 through $cubeCount {
+      .sk-cube-#{$i} {
+        transform: scale(1.1) rotateZ((90deg * ($i - 1)));
+      }
+    }
+  
+    @for $i from 2 through $cubeCount {
+      .sk-cube-#{$i}:before {
+        animation-delay: ($delayRange / $cubeCount * ($i - 1));
+      }
+    }
+  }
+  
+  @keyframes sk-folding-cube-angle {
+    0%, 10% {
+      transform: perspective(140px) rotateX(-180deg);
+      opacity: 0;
+    }
+    25%, 75% {
+      transform: perspective(140px) rotateX(0deg);
+      opacity: 1;
+    }
+    90%, 100% {
+      transform: perspective(140px) rotateY(180deg);
+      opacity: 0;
+    }
+  }
+  
+
+

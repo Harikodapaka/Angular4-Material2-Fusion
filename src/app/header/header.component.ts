@@ -3,6 +3,7 @@ import { MatSidenav, MatSnackBar } from '@angular/material';
 import { AuthService } from '../Services/Auth/auth.service';
 import { HeaderService } from '../Services/Header/header.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -10,12 +11,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  navMenu: any;
+  navMenu: any; 
+  router: Router;
+  search_query:String;
 
-  @ViewChild('profilebar')
+  @ViewChild('profilebar') 
   private sidenav: MatSidenav;
   openProfilebar: any = false;
-  router: Router;
+  
   public currentUser = {
     fname: 'Hari',
     lname: 'Kodapaka',
@@ -34,14 +37,22 @@ export class HeaderComponent implements OnInit {
         this.navMenu = data.navMenu;
       },
       err => {
-        console.log("Error in Header Service:", err);
+        console.log('Error in Header Service:', err);
 
       }
     );
   }
+  searchQuery(){
+    console.log('Searched Querry is:',this.search_query);
+  }
   openProfileBar() {
     setTimeout(() => {
       this.sidenav.open();
+    }, 250);
+  }
+  closeProfileBar(){
+    setTimeout(() => {
+      this.sidenav.close();
     }, 250);
   }
   openSnackBar() {

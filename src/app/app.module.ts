@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
+import { SettingsComponent } from './settings/settings.component';
 
 import { AuthGuard, AuthService } from './Services/Auth/auth.service';
 import { HeaderService } from './Services/Header/header.service'
@@ -25,7 +26,8 @@ import 'hammerjs';
     HeaderComponent,
     LoginComponent,
     DashboardComponent,
-    UserComponent
+    UserComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
