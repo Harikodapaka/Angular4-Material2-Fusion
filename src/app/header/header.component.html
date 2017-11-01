@@ -5,8 +5,10 @@
       <button mat-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>Dashboard</span>
-      <form class="navbar-search" (ngSubmit)="searchQuery()">
+      <span>AM Fusion</span>
+      <mat-icon *ngIf="!isMobile()">more_vert</mat-icon>
+      <span *ngIf="!isMobile()">{{getPageName()}}</span>
+      <form class="navbar-search" (ngSubmit)="searchQuery()" *ngIf="!isTab()">
         <mat-icon>search</mat-icon>
         <input type="text" name="search_query" [(ngModel)]="search_query" class="search-query" placeholder="SEARCH HERE" autocomplete="off">
       </form>
@@ -22,13 +24,32 @@
     <mat-sidenav #sidenav mode="over" class='navMenu'>
       <nav *ngFor="let item of navMenu; index as i;">
         <h3>{{item.heading}}</h3>
-        <ul *ngFor="let menu of item.menu; index as m;">
-          <li>
-            <a [href]="menu.url||'#'">
-              <span>{{menu.label}}</span>
-            </a>
-          </li>
-        </ul>
+        <div *ngFor="let menu of item.menu; index as m;" class="mainMenu">
+          <ul *ngIf="!menu.hasSubMenu">
+            <li>
+              <a [href]="menu.url||'#'">
+                <span>{{menu.label}}</span>
+              </a>
+            </li>
+          </ul>
+          <mat-expansion-panel *ngIf="menu.hasSubMenu" class="subMenu">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{menu.label}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div *ngFor="let smenu of menu.submenu; index as sm;">
+              <ul>
+                <li>
+                  <a [href]="smenu.url||'#'">
+                    <span>{{smenu.label}}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </mat-expansion-panel>
+        </div>
+
       </nav>
     </mat-sidenav>
     <!-- profile side navigaton -->

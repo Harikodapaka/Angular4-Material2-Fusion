@@ -32,7 +32,7 @@
     visibility: visible;
     height: auto;
     opacity: 1;
-    transform: translateY(0em);
+    transform: translateY(4em);
     padding-top: 8em;
 }
 
@@ -86,7 +86,7 @@
 
 .error-div {
     height: 10px;
-    margin-bottom: 72px;
+    margin-bottom: 5px;
 }
 
 .login-error {
@@ -122,7 +122,7 @@
     z-index: 1;
     transform: translateX(-50%);
 	background: #745e7c;
-    -webkit-transform: translate(-50%, 1.8em);
-    transform: translate(-50%, 1em);
+    -webkit-transform: translate(-50%, 5em);
+    transform: translate(-50%, 5em);
 	width: 6rem;
 }

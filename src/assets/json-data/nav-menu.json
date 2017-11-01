@@ -31,7 +31,18 @@
                 },
                 {
                     "url": "#",
-                    "label": "Menu-Three-Three"
+                    "label": "Menu-Three-Three",
+                    "hasSubMenu":"true",
+                    "submenu":[{
+                        "url": "#",
+                        "label": "Sub-Menu-One-One"
+                    },{
+                        "url": "#",
+                        "label": "Sub-Menu-One-Two"
+                    }]
+                },{
+                    "url": "#",
+                    "label": "Menu-Two-Four"
                 }
             ]
         }

@@ -64,4 +64,14 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+  isMobile() {
+    return window.innerWidth < 490;
+  }
+  isTab() {
+    return window.innerWidth < 1000;
+  }
+  getPageName() {
+    return 'Dashboard';
+  }
+
 }
