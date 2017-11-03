@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'app-landing',
+  templateUrl: './landing.component.html',
+  styleUrls: ['./landing.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class LandingComponent implements OnInit {
   navMenu: any; 
   router: Router;
   search_query:String;

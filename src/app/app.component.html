@@ -1,9 +1,1 @@
-<app-login *ngIf="!authService.isLoggedIn()"></app-login>
-<div *ngIf="authService.isLoggedIn()">
-  <app-header>
-    <div class="app-body">
-      <router-outlet></router-outlet>
-    </div>
-  </app-header>
-
-</div>
+<router-outlet></router-outlet>

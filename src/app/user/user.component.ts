@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Injector } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
+import { LandingComponent } from '../landing-component/landing.component';
 
 @Component({
   selector: 'app-user',
@@ -12,7 +12,7 @@ export class UserComponent implements OnInit {
   constructor(private injector: Injector) { }
 
   ngOnInit() {
-    this.headerCmp = this.injector.get(HeaderComponent);
+    this.headerCmp = this.injector.get(LandingComponent);
   }
 
 }
