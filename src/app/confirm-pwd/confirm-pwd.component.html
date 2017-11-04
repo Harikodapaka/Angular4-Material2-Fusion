@@ -1,0 +1,50 @@
+<div class="login-wrapper">
+  <div class="container">
+    <div class="error-div">
+      <div class="login-error" *ngIf="isLoginFail">
+        <div>
+          <i class="material-icons">error</i>
+          <span class="err-msg">Something is not right, try again.</span>
+        </div>
+      </div>
+    </div>
+    <div class="profile--open">
+      <div class="animated animation">
+        <mat-card class="profile__form">
+          <div class="text-center">
+            <div class="icon-object text-warning">
+              <i class="material-icons">verified_user</i>
+            </div>
+            <h5 class="content-group">Reset Password</h5>
+            <div>
+              <small class="display-block">You are almost there!</small>
+              <small class="display-block">Please set a new password and login back.</small>
+            </div>
+            <form name="form" #form="ngForm" novalidate>
+              <div class="field">
+                <mat-form-field [floatPlaceholder]="always" class="example-full-width" style="margin-top: 1em;">
+                  <input matInput [type]="hide ? 'password' : 'text'" placeholder="Type Your Password Here" [(ngModel)]="auth.pwd" required id="pwd" name="pwd" #pwd='ngModel'>
+                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                  <mat-hint align="end" [ngClass]="{'red':getstringth()=='Week','warn':getstringth()=='Medium','green':getstringth()=='Strong'}">Strength: {{getstringth()}}</mat-hint>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field [floatPlaceholder]="always" class="example-full-width">
+                  <input matInput type="password" placeholder="Retype Your Password" [(ngModel)]="auth.cpwd" id="cpwd" name="cpwd" required #cpwd='ngModel'>
+                  <mat-icon matSuffix [ngClass]="{'green': matchPwd()}">beenhere</mat-icon>
+                  <mat-hint align="end">Password is case-sensitive</mat-hint>
+                </mat-form-field>
+              </div>
+              <div>
+                <button mat-raised-button color="primary" class="btn-lg" [disabled]="!matchPwd()" routerLink="/login">
+                  Reset Password
+                  <mat-icon class="nextIcon" aria-label="reset password icon" style="color:#fff; margin-left: 10px;">lock_open</mat-icon>
+                </button>
+              </div>
+            </form>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

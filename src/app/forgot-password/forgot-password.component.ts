@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { PatternValidator } from '@angular/forms';
 
 @Component({
   selector: 'app-forgot-password',

@@ -1,0 +1,22 @@
+@import '../forgot-password/forgot-password.component.scss';
+
+.container{
+    animation: none !important;
+}
+.icon-object{
+    transform: none;
+    -moz-transform: none;
+    -webkit-transform: none;
+    -ms-transform: none;
+    background-color: #3F51B5;
+    border-color: gainsboro;
+}
+.green{
+    color: #21d421 !important;
+}
+.red{
+    color: #ec2626 !important;
+}
+.warn{
+    color: #FF9800  !important;
+}

@@ -14,6 +14,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { OtpComponent } from './otp/otp.component';
+import { ConfirmPwdComponent } from './confirm-pwd/confirm-pwd.component';
 
 import { AuthGuard, AuthService } from './Services/Auth/auth.service';
 
@@ -24,6 +26,8 @@ import 'hammerjs';
     AppComponent,
     LoginComponent,
     ForgotPasswordComponent,
+    OtpComponent,
+    ConfirmPwdComponent,
 
   ],
   imports: [

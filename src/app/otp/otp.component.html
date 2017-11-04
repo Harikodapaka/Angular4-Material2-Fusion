@@ -13,28 +13,30 @@
         <mat-card class="profile__form">
           <div class="text-center">
             <div class="icon-object text-warning">
-              <i class="material-icons">restore</i>
+              <i class="material-icons">security</i>
             </div>
-            <h5 class="content-group">Password recovery</h5>
+            <h5 class="content-group">Autherization</h5>
             <div>
-              <small class="display-block">Please provide your account’s email and we will send you a link to reset your password.</small>
+              <small class="display-block">Enter the autherization code that you have recieved through phone / email</small>
             </div>
             <form name="form" #form="ngForm" novalidate>
               <div>
-                <mat-form-field [floatPlaceholder]="never" class="example-full-width" style="margin-top:1em;">
-                  <input matInput type="email" [(ngModel)]="userMail" id="usermail" name="usermail" placeholder="Enter Your Account Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" required #usermail='ngModel'>
-                  <mat-icon matSuffix>mail_outline</mat-icon>
+                <mat-form-field [floatPlaceholder]="always" class="example-full-width" style="margin-top:1em;">
+                  <input matInput type="text" maxlength="6" [(ngModel)]="otp" id="otp" name="otp" pattern="^[0-9]{6}$" placeholder="Enter OTP Here"
+                    required>
+                  <mat-icon matSuffix>lock</mat-icon>
+                  <mat-hint align="end">{{otp? otp.length:'0'}} / 6</mat-hint>
                 </mat-form-field>
               </div>
               <div>
-                <button mat-raised-button color="warn" class="btn-lg" routerLink="/OTP" [disabled]="!form.valid">
+                <button mat-raised-button color="warn" class="btn-lg" routerLink="/confirmPassword" [disabled]="!form.valid">
                   Next
                   <mat-icon class="nextIcon" aria-label="reset password icon" style="color:#fff; margin-left: 10px;">arrow_forward</mat-icon>
                 </button>
               </div>
               <div class="forgot_register">
                 <ul class="login-navigation">
-                  <li class="bgm-green" routerLink="/login">Login</li>
+                  <li class="bgm-green" routerLink="/forgotPassword">Back</li>
                 </ul>
               </div>
             </form>
