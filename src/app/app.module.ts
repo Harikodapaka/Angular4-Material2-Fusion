@@ -9,6 +9,7 @@ import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './routes/app.routes';
 import { LandingModule } from './landing-component/app.landing.module';
 import { SubRoutingModule } from './landing-component/app.landing.routes';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -34,7 +35,13 @@ import 'hammerjs';
     AppRoutingModule,
     BrowserAnimationsModule,
     SubRoutingModule,
-    LandingModule
+    LandingModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-top-right',
+      closeButton:true,
+      maxOpened:6
+    })
   ],
   providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]
