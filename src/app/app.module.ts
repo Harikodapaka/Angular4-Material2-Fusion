@@ -12,6 +12,7 @@ import { SubRoutingModule } from './landing-component/app.landing.routes';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 import { AuthGuard, AuthService } from './Services/Auth/auth.service';
 
@@ -21,6 +22,7 @@ import 'hammerjs';
   declarations: [
     AppComponent,
     LoginComponent,
+    ForgotPasswordComponent,
 
   ],
   imports: [

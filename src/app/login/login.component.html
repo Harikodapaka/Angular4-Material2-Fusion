@@ -3,8 +3,7 @@
     <div class="error-div">
       <div class="login-error" [hidden]="!isLoginFail">
         <div>
-            <i class="material-icons">error</i>
-          <span class="err-msg">Something is not right, try again.</span>
+          <span class="err-msg"> <i class="material-icons">error</i> Something is not right, try again.</span>
         </div>
       </div>
     </div>
@@ -25,7 +24,7 @@
                   <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password" id="password" name='password' required placeholder="Password"
                   #password='ngModel'>
                   <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                  <mat-hint align="end">Strength: {{user.password.length>10 ? 'Strong':'Week'}}</mat-hint>
+                  <mat-hint align="end">Password is case-sensitive</mat-hint>
                 </mat-form-field>
           </div>
           <div class="profile__footer">
@@ -34,7 +33,7 @@
             <div class="forgot_register">
               <ul class="login-navigation">
                 <li class="bgm-red">Register</li>
-                <li class="bgm-orange">Forgot Password?</li>
+                <li class="bgm-orange" routerLink="/forgotPassword">Forgot Password?</li>
               </ul>
             </div>
           </div>
