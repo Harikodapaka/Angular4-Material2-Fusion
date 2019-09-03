@@ -17,7 +17,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { OtpComponent } from './otp/otp.component';
 import { ConfirmPwdComponent } from './confirm-pwd/confirm-pwd.component';
 
-import { AuthGuard, AuthService } from './Services/Auth/auth.service';
+import { AuthGuard, AuthService, LoginGuard } from './Services/Auth/auth.service';
 
 import 'hammerjs';
 
@@ -47,7 +47,7 @@ import 'hammerjs';
       maxOpened:6
     })
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, LoginGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

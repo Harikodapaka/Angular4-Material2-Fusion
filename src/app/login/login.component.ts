@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   tryingToLogin: boolean;
   isLoginFail: boolean = false;
+  hide: boolean = true;
   user: any = {
     username: '',
     password: ''
@@ -21,10 +22,10 @@ export class LoginComponent implements OnInit {
 
   getLogin() {
     this.tryingToLogin = true;
-    const user: any = {'' : ''};
+    const user: any = { '': '' };
     setTimeout(() => {
-      localStorage.setItem('currentUser', JSON.stringify( user));
+      localStorage.setItem('currentUser', JSON.stringify(user));
       this.router.navigate(['/app'])
- }, 3000);
+    }, 3000);
   }
 }
