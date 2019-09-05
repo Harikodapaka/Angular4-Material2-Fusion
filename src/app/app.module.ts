@@ -47,7 +47,11 @@ import 'hammerjs';
       maxOpened:6
     })
   ],
-  providers: [AuthGuard, LoginGuard, AuthService],
+  providers: [
+    AuthGuard, 
+    LoginGuard, 
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

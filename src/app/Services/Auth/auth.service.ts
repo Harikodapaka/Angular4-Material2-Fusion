@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { Route, Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanLoad } from '@angular/router';
+import { User, LoginUser } from '../../Interfaces/Interfaces';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthService {
 
-  constructor() { }
+  constructor(private http: Http,
+    private toastrService: ToastrService) {}
 
   isLoggedIn(): boolean {
     return this.currentUser() != null;
@@ -16,8 +22,24 @@ export class AuthService {
     if (user) return JSON.parse(user);
   }
 
+  login(user: LoginUser): Observable<User> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+    // headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    const options = new RequestOptions({headers: headers});
+    return this.http
+      .post(`${environment.apiBaseUrl}/auth/login`, user, options)
+      .map(response => response.json())
+      .catch((e: any) => Observable.throw(this.errorHandler(e)));
+  }
+
   logout(): void {
     localStorage.clear();
+  }
+  errorHandler(err: any): void {
+    let error = err.json()
+    this.toastrService.error(error.message)
   }
 }
 
