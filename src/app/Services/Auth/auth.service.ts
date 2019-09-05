@@ -3,7 +3,9 @@ import { environment } from '../../../environments/environment';
 import { Route, Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanLoad } from '@angular/router';
 import { User, LoginUser } from '../../Interfaces/Interfaces';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
@@ -26,11 +28,11 @@ export class AuthService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
-    // headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const options = new RequestOptions({headers: headers});
+
     return this.http
       .post(`${environment.apiBaseUrl}/auth/login`, user, options)
-      .map(response => response.json())
+      .map(response => response.json().user as User)
       .catch((e: any) => Observable.throw(this.errorHandler(e)));
   }
 
@@ -38,8 +40,8 @@ export class AuthService {
     localStorage.clear();
   }
   errorHandler(err: any): void {
-    let error = err.json()
-    this.toastrService.error(error.message)
+    const error = err.json();
+    this.toastrService.error(error.message);
   }
 }
 

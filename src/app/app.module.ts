@@ -43,13 +43,13 @@ import 'hammerjs';
     ToastrModule.forRoot({
       timeOut: 4000,
       positionClass: 'toast-top-right',
-      closeButton:true,
-      maxOpened:6
+      closeButton: true,
+      maxOpened: 6
     })
   ],
   providers: [
-    AuthGuard, 
-    LoginGuard, 
+    AuthGuard,
+    LoginGuard,
     AuthService
   ],
   bootstrap: [AppComponent]

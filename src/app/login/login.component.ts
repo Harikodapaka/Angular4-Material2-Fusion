@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../Services/Auth/auth.service';
-import { User, LoginUser } from '../Interfaces/Interfaces';
-import { error } from 'util';
+import { LoginUser } from '../Interfaces/Interfaces';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +11,10 @@ import { error } from 'util';
 })
 export class LoginComponent implements OnInit {
   tryingToLogin: boolean;
-  isLoginFail: boolean = false;
-  hide: boolean = true;
-  user: any = {
-    username: '',
+  isLoginFail = false;
+  hide = true;
+  user: LoginUser = {
+    email: '',
     password: ''
   };
   constructor(private router: Router, private authService: AuthService) { }
@@ -25,16 +24,16 @@ export class LoginComponent implements OnInit {
 
   getLogin() {
     this.tryingToLogin = true;
-    const user: LoginUser = { email: 'chandu@gmail.com', password: '12345' };
-    this.authService.login(user).subscribe( data => {
-      if(data.token){
-        localStorage.setItem('currentUser', JSON.stringify(data.token))
-        this.router.navigate(['/app'])
-      }else{
+    this.authService.login(this.user).subscribe(data => {
+      if (data.token) {
+        localStorage.setItem('currentUser', JSON.stringify(data.token));
+        this.router.navigate(['/app']);
+      } else {
         this.tryingToLogin = false;
       }
     }, error => {
       console.log(error);
+      this.tryingToLogin = false;
     });
   }
 }

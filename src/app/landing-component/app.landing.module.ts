@@ -25,7 +25,7 @@ import { LandingComponent } from '../landing-component/landing.component';
     declarations: [
         DashboardComponent,
         UserComponent,
-        LandingComponent,        
+        LandingComponent,
         SettingsComponent,
     ],
     exports: [

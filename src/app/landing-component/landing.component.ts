@@ -11,19 +11,19 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-  navMenu: any; 
+  navMenu: any;
   router: Router;
-  search_query:String;
+  search_query: String;
 
-  @ViewChild('profilebar') 
+  @ViewChild('profilebar')
   private sidenav: MatSidenav;
   openProfilebar: any = false;
-  
+
   public currentUser = {
     fname: 'Hari',
     lname: 'Kodapaka',
     email: 'chaitanyakodapaka@gmail.com'
-  }
+  };
   constructor(private snackBar: MatSnackBar,
     private authService: AuthService,
     private headerService: HeaderService,
@@ -42,15 +42,15 @@ export class LandingComponent implements OnInit {
       }
     );
   }
-  searchQuery(){
-    console.log('Searched Querry is:',this.search_query);
+  searchQuery() {
+    console.log('Searched Querry is:', this.search_query);
   }
   openProfileBar() {
     setTimeout(() => {
       this.sidenav.open();
     }, 250);
   }
-  closeProfileBar(){
+  closeProfileBar() {
     setTimeout(() => {
       this.sidenav.close();
     }, 250);

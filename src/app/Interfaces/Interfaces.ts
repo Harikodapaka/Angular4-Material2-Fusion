@@ -1,9 +1,9 @@
 export interface User {
-    username: String,
-    email: String,
-    token: String
+    username: String;
+    email: String;
+    token: String;
 }
 export interface LoginUser {
-    email: String,
-    password: String
+    email: String;
+    password: String;
 }

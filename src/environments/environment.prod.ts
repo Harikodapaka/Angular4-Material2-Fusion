@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: "http://dummyapi/api/"
+  apiBaseUrl: 'https://am-fusion-api.herokuapp.com'
 };

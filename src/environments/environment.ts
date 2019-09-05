@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: "https://am-fusion-api.herokuapp.com"
+  apiBaseUrl: 'https://am-fusion-api.herokuapp.com'
 };
