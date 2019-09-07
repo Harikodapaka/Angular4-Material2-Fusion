@@ -48,12 +48,12 @@ export class AuthService {
   }
   logout(): void {
     localStorage.clear();
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log(this.auth2);
+    // var auth2 = gapi.auth2.getAuthInstance();
+    // auth2.signOut().then(function () {
+    //   console.log(this.auth2);
       
-      console.log('User signed out.');
-    });
+    //   console.log('User signed out.');
+    // });
   }
   errorHandler(err: any): void {
     const error = err.json();
