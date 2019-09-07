@@ -7,10 +7,10 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { ToastrService } from 'ngx-toastr';
+declare const gapi: any;
 
 @Injectable()
 export class AuthService {
-
   constructor(private http: Http,
     private toastrService: ToastrService) {}
 
@@ -35,9 +35,25 @@ export class AuthService {
       .map(response => response.json().user as User)
       .catch((e: any) => Observable.throw(this.errorHandler(e)));
   }
-
+  googleSignin(token: any): Observable<any> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+    const options = new RequestOptions({headers: headers});
+    let body = {'access_token': token}
+    return this.http
+      .post(`${environment.apiBaseUrl}/auth/google`, body, options)
+      .map(response => response.json().user as User)
+      .catch((e: any) => Observable.throw(this.errorHandler(e)));
+  }
   logout(): void {
     localStorage.clear();
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log(this.auth2);
+      
+      console.log('User signed out.');
+    });
   }
   errorHandler(err: any): void {
     const error = err.json();

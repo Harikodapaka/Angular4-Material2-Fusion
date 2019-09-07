@@ -20,6 +20,7 @@ import { ConfirmPwdComponent } from './confirm-pwd/confirm-pwd.component';
 import { AuthGuard, AuthService, LoginGuard } from './Services/Auth/auth.service';
 
 import 'hammerjs';
+import { GoogleSigninComponent } from './login/google-sign-in.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import 'hammerjs';
     ForgotPasswordComponent,
     OtpComponent,
     ConfirmPwdComponent,
-
+    GoogleSigninComponent
   ],
   imports: [
     BrowserModule,
