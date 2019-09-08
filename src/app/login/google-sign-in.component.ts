@@ -45,8 +45,8 @@ export class GoogleSigninComponent implements AfterViewInit {
                 that.authService.googleSignin(token).subscribe(data => {
                     if (data.token) {
                         localStorage.setItem('currentUser', JSON.stringify(data.token));
-                        // window.location.href = `/#/app`
-                        that.router.navigate(['/app']);
+                        window.location.href = `/#/app`
+                        // that.router.navigate(['/app']);
                     }
                 });
 

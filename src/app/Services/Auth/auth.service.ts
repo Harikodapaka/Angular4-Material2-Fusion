@@ -12,7 +12,7 @@ declare const gapi: any;
 @Injectable()
 export class AuthService {
   constructor(private http: Http,
-    private toastrService: ToastrService) {}
+    private toastrService: ToastrService) { }
 
   isLoggedIn(): boolean {
     return this.currentUser() != null;
@@ -28,7 +28,7 @@ export class AuthService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
-    const options = new RequestOptions({headers: headers});
+    const options = new RequestOptions({ headers: headers });
 
     return this.http
       .post(`${environment.apiBaseUrl}/auth/login`, user, options)
@@ -39,21 +39,25 @@ export class AuthService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
-    const options = new RequestOptions({headers: headers});
-    let body = {'access_token': token}
+    const options = new RequestOptions({ headers: headers });
+    let body = { 'access_token': token }
     return this.http
       .post(`${environment.apiBaseUrl}/auth/google`, body, options)
       .map(response => response.json().user as User)
       .catch((e: any) => Observable.throw(this.errorHandler(e)));
   }
   logout(): void {
+    if (gapi) {
+      gapi.load('auth2', function () {
+        /* Ready. Make a call to gapi.auth2.init or some other API */
+        let auth2 = gapi.auth2.getAuthInstance();
+        console.log(auth2);
+        auth2.signOut().then(function () {
+          console.log('Google signed out.');
+        });
+      });
+    }
     localStorage.clear();
-    // var auth2 = gapi.auth2.getAuthInstance();
-    // auth2.signOut().then(function () {
-    //   console.log(this.auth2);
-      
-    //   console.log('User signed out.');
-    // });
   }
   errorHandler(err: any): void {
     const error = err.json();
