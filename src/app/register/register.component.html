@@ -32,7 +32,7 @@
               </div>
               
               <div>
-                <button mat-raised-button color="warn" class="btn-lg" [disabled]="!form.valid">
+                <button mat-raised-button color="warn" class="btn-lg" [disabled]="!form.valid || !matchPwd()" (click)="register()">
                   Sign Up
                 </button>
               </div>
