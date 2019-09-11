@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { NgForm, PatternValidator } from '@angular/forms';
+import { AppService } from '../Services/App/app.service';
 
 @Component({
   selector: 'app-confirm-pwd',
@@ -14,22 +15,14 @@ export class ConfirmPwdComponent implements OnInit {
     pwd: '',
     cpwd: ''
   };
-  constructor() { }
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
   }
   getstringth() {
-    if (this.auth.pwd) {
-      return this.auth.pwd.length < 5 ? 'Week' : this.auth.pwd.length < 9 ? 'Medium' : 'Strong';
-    }
-    return '**';
+    return this.appService.getSterength(this.auth.pwd);
   }
   matchPwd() {
-    if (this.auth.pwd && this.auth.cpwd) {
-      if (this.auth.pwd === this.auth.cpwd) {
-        return true;
-      }
-    }
-    return false;
+    return this.appService.matchPwd(this.auth.pwd, this.auth.cpwd);
   }
 }

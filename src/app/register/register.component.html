@@ -1,0 +1,50 @@
+<div class="login-wrapper">
+  <div class="container">
+    <div class="profile--open">
+      <div class="animated animation">
+        <mat-card class="profile__form">
+          <div class="text-center">
+            <div class="icon-object text-warning">
+              <i class="material-icons">assignment </i>
+            </div>
+            <h5 class="content-group">Register</h5>
+            <form name="form" #form="ngForm" novalidate>
+              <div>
+                <mat-form-field [floatPlaceholder]="always" class="example-full-width" style="margin-top:1em;">
+                  <input matInput type="email" [(ngModel)]="auth.email" id="usermail" name="usermail" placeholder="Enter Your Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" required #usermail='ngModel'>
+                  <mat-icon matSuffix>mail_outline</mat-icon>
+                </mat-form-field>
+              </div>
+
+              <div class="field">
+                <mat-form-field [floatPlaceholder]="always" class="example-full-width" style="margin-top: 1em;">
+                  <input matInput [type]="hide ? 'password' : 'text'" placeholder="Type Your Password Here" [(ngModel)]="auth.password" required id="pwd" name="pwd" #pwd='ngModel'>
+                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                  <mat-hint align="end" [ngClass]="{'red':getstringth()=='Week','warn':getstringth()=='Medium','green':getstringth()=='Strong'}">Strength: {{getstringth()}}</mat-hint>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field [floatPlaceholder]="always" class="example-full-width">
+                  <input matInput type="password" placeholder="Retype Your Password" [(ngModel)]="auth.confirm_password" id="cpwd" name="cpwd" required #cpwd='ngModel'>
+                  <mat-icon matSuffix [ngClass]="{'green': matchPwd()}">beenhere</mat-icon>
+                  <mat-hint align="end">Password is case-sensitive</mat-hint>
+                </mat-form-field>
+              </div>
+              
+              <div>
+                <button mat-raised-button color="warn" class="btn-lg" [disabled]="!form.valid">
+                  Sign Up
+                </button>
+              </div>
+              <div class="forgot_register">
+                <ul class="login-navigation">
+                  <li class="bgm-green" routerLink="/login">Login</li>
+                </ul>
+              </div>
+            </form>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

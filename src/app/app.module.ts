@@ -21,6 +21,8 @@ import { AuthGuard, AuthService, LoginGuard } from './Services/Auth/auth.service
 
 import 'hammerjs';
 import { GoogleSigninComponent } from './login/google-sign-in.component';
+import { RegisterComponent } from './register/register.component';
+import { AppService } from './Services/App/app.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { GoogleSigninComponent } from './login/google-sign-in.component';
     ForgotPasswordComponent,
     OtpComponent,
     ConfirmPwdComponent,
-    GoogleSigninComponent
+    GoogleSigninComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { GoogleSigninComponent } from './login/google-sign-in.component';
   providers: [
     AuthGuard,
     LoginGuard,
-    AuthService
+    AuthService,
+    AppService
   ],
   bootstrap: [AppComponent]
 })

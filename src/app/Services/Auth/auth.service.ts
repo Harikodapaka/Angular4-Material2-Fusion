@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Route, Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanLoad } from '@angular/router';
-import { User, LoginUser } from '../../Interfaces/Interfaces';
+import { User, LoginUser, RegisterUser, BasicResponse } from '../../Interfaces/Interfaces';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -23,7 +23,17 @@ export class AuthService {
     // tslint:disable-next-line:curly
     if (user) return JSON.parse(user);
   }
+  register(user: RegisterUser): Observable<BasicResponse>{
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+    const options = new RequestOptions({ headers: headers });
 
+    return this.http
+      .post(`${environment.apiBaseUrl}/auth/register`, user, options)
+      .map(response => response.json() as BasicResponse)
+      .catch((e: any) => Observable.throw(this.errorHandler(e)));
+  }
   login(user: LoginUser): Observable<User> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');

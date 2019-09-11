@@ -1,12 +1,12 @@
 import { Component, ElementRef, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../Services/Auth/auth.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 declare const gapi: any;
 
 @Component({
     selector: 'google-signin',
-    template: `<button id="googleBtn" mat-raised-button color="warn" class="m-2 w-75">Sign in with Google</button>`  
+    template: `<button type="button" id="googleBtn" mat-raised-button color="warn" class="m-2 w-75">Sign in with Google</button>`  
 })
 export class GoogleSigninComponent implements AfterViewInit {
 
@@ -18,6 +18,17 @@ export class GoogleSigninComponent implements AfterViewInit {
     ].join(' ');
 
     public auth2: any;
+
+    constructor(private element: ElementRef,
+        private toastrService: ToastrService,
+        private authService: AuthService,
+        private router: Router) {
+        console.log('ElementRef: ', this.element);
+    }
+    ngAfterViewInit() {
+        this.googleInit();
+    }
+
     public googleInit() {
         let that = this;
         gapi.load('auth2', function () {
@@ -33,20 +44,13 @@ export class GoogleSigninComponent implements AfterViewInit {
         let that = this;
         this.auth2.attachClickHandler(element, {},
             function (googleUser) {
-
-                let profile = googleUser.getBasicProfile();
-                console.log('Token || ' + googleUser.getAuthResponse().access_token);
-                console.log('ID: ' + profile.getId());
-                console.log('Name: ' + profile.getName());
-                console.log('Image URL: ' + profile.getImageUrl());
-                console.log('Email: ' + profile.getEmail());
                 //YOUR CODE HERE
                 let token = googleUser.getAuthResponse().access_token;
                 that.authService.googleSignin(token).subscribe(data => {
                     if (data.token) {
                         localStorage.setItem('currentUser', JSON.stringify(data.token));
-                        window.location.href = `/#/app`
-                        // that.router.navigate(['/app']);
+                        window.location.href = `${window.location.origin}/#/app`
+                        // that.router.navigate(['/app/']);
                     }
                 });
 
@@ -58,16 +62,6 @@ export class GoogleSigninComponent implements AfterViewInit {
     public disconnect() {
         // Revoke the access token.
         this.auth2.disconnect();
-    }
-    constructor(private element: ElementRef,
-        private toastrService: ToastrService,
-        private router: Router,
-        private authService: AuthService) {
-        console.log('ElementRef: ', this.element);
-    }
-
-    ngAfterViewInit() {
-        this.googleInit();
     }
     
 }

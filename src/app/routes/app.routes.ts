@@ -5,10 +5,12 @@ import { ForgotPasswordComponent } from '../forgot-password/forgot-password.comp
 import { OtpComponent } from '../otp/otp.component';
 import { ConfirmPwdComponent } from '../confirm-pwd/confirm-pwd.component';
 import { LoginGuard } from '../Services/Auth/auth.service';
+import { RegisterComponent } from '../register/register.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/app', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [LoginGuard] },
   { path: 'forgotPassword', component: ForgotPasswordComponent, canActivate: [LoginGuard] },
   { path: 'OTP', component: OtpComponent, canActivate: [LoginGuard] },
   { path: 'confirmPassword', component: ConfirmPwdComponent, canActivate: [LoginGuard] }
