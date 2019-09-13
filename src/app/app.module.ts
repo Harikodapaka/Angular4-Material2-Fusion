@@ -10,6 +10,7 @@ import { AppRoutingModule } from './routes/app.routes';
 import { LandingModule } from './landing-component/app.landing.module';
 import { SubRoutingModule } from './landing-component/app.landing.routes';
 import { ToastrModule } from 'ngx-toastr';
+import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -24,6 +25,7 @@ import { GoogleSigninComponent } from './login/google-sign-in.component';
 import { RegisterComponent } from './register/register.component';
 import { AppService } from './Services/App/app.service';
 import { HttpErrorInterceptor } from './Interceptors/http-error.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -45,8 +47,9 @@ import { HttpErrorInterceptor } from './Interceptors/http-error.interceptor';
     BrowserAnimationsModule,
     SubRoutingModule,
     LandingModule,
+    NgProgressModule,
     ToastrModule.forRoot({
-      timeOut: 4000,
+      timeOut: 2000,
       positionClass: 'toast-top-right',
       closeButton: true,
       maxOpened: 6
@@ -60,6 +63,11 @@ import { HttpErrorInterceptor } from './Interceptors/http-error.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NgProgressInterceptor,
       multi: true
     }
   ],

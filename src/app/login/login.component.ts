@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
         this.tryingToLogin = false;
       }
     }, error => {
-      console.log(error);
       this.tosterService.error(error['error']);
       this.tryingToLogin = false;
     });

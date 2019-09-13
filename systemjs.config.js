@@ -28,6 +28,7 @@
         // CDK individual packages
         '@angular/cdk/platform': 'npm:@angular/cdk/bundles/cdk-platform.umd.js',
         '@angular/cdk/a11y': 'npm:@angular/cdk/bundles/cdk-a11y.umd.js',
+        'ngx-progressbar': 'node_modules/ngx-progressbar/bundles/ngx-progressbar.umd.js',
       },
       // packages tells the System loader how to load when no filename and/or no extension
       packages: {
