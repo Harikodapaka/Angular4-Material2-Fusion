@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../Services/Auth/auth.service';
 import { LoginUser } from '../Interfaces/Interfaces';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,10 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router,
+    private authService: AuthService,
+    private tosterService: ToastrService
+  ) { }
 
   ngOnInit() {
   }
@@ -33,6 +37,7 @@ export class LoginComponent implements OnInit {
       }
     }, error => {
       console.log(error);
+      this.tosterService.error(error['error']);
       this.tryingToLogin = false;
     });
   }

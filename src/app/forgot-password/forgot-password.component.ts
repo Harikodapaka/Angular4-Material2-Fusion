@@ -9,6 +9,7 @@ import { PatternValidator } from '@angular/forms';
 })
 export class ForgotPasswordComponent implements OnInit {
   never = 'never';
+  email:String;
   constructor() { }
 
   ngOnInit() {

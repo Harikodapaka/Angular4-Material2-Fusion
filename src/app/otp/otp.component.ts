@@ -8,7 +8,7 @@ import { NgForm, PatternValidator } from '@angular/forms';
 })
 export class OtpComponent implements OnInit {
   always = 'always';
-  otp: number;
+  otp: String;
   constructor() { }
 
   ngOnInit() {

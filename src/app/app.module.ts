@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material/material.module';
@@ -23,6 +23,7 @@ import 'hammerjs';
 import { GoogleSigninComponent } from './login/google-sign-in.component';
 import { RegisterComponent } from './register/register.component';
 import { AppService } from './Services/App/app.service';
+import { HttpErrorInterceptor } from './Interceptors/http-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { AppService } from './Services/App/app.service';
     BrowserModule,
     MaterialModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     FlexLayoutModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -55,7 +56,12 @@ import { AppService } from './Services/App/app.service';
     AuthGuard,
     LoginGuard,
     AuthService,
-    AppService
+    AppService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

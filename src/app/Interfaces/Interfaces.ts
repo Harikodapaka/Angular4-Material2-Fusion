@@ -3,16 +3,16 @@ export interface User {
     email: String;
     token: String;
 }
-export interface RegisterUser{
+export interface RegisterUser {
     email: String;
     password: String;
-    confirm_password: String
+    confirm_password: String;
 }
 export interface LoginUser {
     email: String;
     password: String;
 }
 export interface BasicResponse {
-    success: String,
-    message: String
+    success: String;
+    message: String;
 }

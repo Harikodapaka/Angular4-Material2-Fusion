@@ -2,18 +2,26 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Route, Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanLoad } from '@angular/router';
 import { User, LoginUser, RegisterUser, BasicResponse } from '../../Interfaces/Interfaces';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import { ToastrService } from 'ngx-toastr';
+
 declare const gapi: any;
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  })
+};
 
 @Injectable()
 export class AuthService {
-  constructor(private http: Http,
-    private toastrService: ToastrService) { }
-
+  constructor(private http: HttpClient) { }
+  private clientId = '2387600941-5u5j008fesmdksobv31dobtv0cs1pv9e.apps.googleusercontent.com';
+  private scope = [
+    'profile',
+    'email'
+].join(' ');
   isLoggedIn(): boolean {
     return this.currentUser() != null;
   }
@@ -23,55 +31,32 @@ export class AuthService {
     // tslint:disable-next-line:curly
     if (user) return JSON.parse(user);
   }
-  register(user: RegisterUser): Observable<BasicResponse>{
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Access-Control-Allow-Origin', '*');
-    const options = new RequestOptions({ headers: headers });
-
+  register(user: RegisterUser): Observable<BasicResponse> {
     return this.http
-      .post(`${environment.apiBaseUrl}/auth/register`, user, options)
-      .map(response => response.json() as BasicResponse)
-      .catch((e: any) => Observable.throw(this.errorHandler(e)));
+      .post(`${environment.apiBaseUrl}/auth/register`, user, httpOptions)
+      .map(response => response as BasicResponse);
   }
   login(user: LoginUser): Observable<User> {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Access-Control-Allow-Origin', '*');
-    const options = new RequestOptions({ headers: headers });
-
     return this.http
-      .post(`${environment.apiBaseUrl}/auth/login`, user, options)
-      .map(response => response.json().user as User)
-      .catch((e: any) => Observable.throw(this.errorHandler(e)));
+      .post(`${environment.apiBaseUrl}/auth/login`, user, httpOptions)
+      .map(response => response['user'] as User);
   }
   googleSignin(token: any): Observable<any> {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Access-Control-Allow-Origin', '*');
-    const options = new RequestOptions({ headers: headers });
-    let body = { 'access_token': token }
+    const body = { 'access_token': token };
     return this.http
-      .post(`${environment.apiBaseUrl}/auth/google`, body, options)
-      .map(response => response.json().user as User)
-      .catch((e: any) => Observable.throw(this.errorHandler(e)));
+      .post(`${environment.apiBaseUrl}/auth/google`, body, httpOptions)
+      .map(response => response['user'] as User);
   }
   logout(): void {
+    const that = this;
     if (gapi) {
-      gapi.load('auth2', function () {
-        /* Ready. Make a call to gapi.auth2.init or some other API */
-        let auth2 = gapi.auth2.getAuthInstance();
-        console.log(auth2);
+      const auth2 = gapi.auth2.getAuthInstance();
+      console.log(auth2);
         auth2.signOut().then(function () {
-          console.log('Google signed out.');
+            auth2.disconnect();
         });
-      });
     }
     localStorage.clear();
-  }
-  errorHandler(err: any): void {
-    const error = err.json();
-    this.toastrService.error(error.message);
   }
 }
 

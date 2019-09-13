@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 declare const gapi: any;
 
 @Component({
-    selector: 'google-signin',
-    template: `<button type="button" id="googleBtn" mat-raised-button color="warn" class="m-2 w-75">Sign in with Google</button>`  
+    selector: 'app-google-signin',
+    template: `<button type="button" id="googleBtn" mat-raised-button color="warn" class="m-2 w-75">Sign in with Google</button>`
 })
 export class GoogleSigninComponent implements AfterViewInit {
 
-    private clientId: string = '2387600941-5u5j008fesmdksobv31dobtv0cs1pv9e.apps.googleusercontent.com';
+    private clientId = '2387600941-5u5j008fesmdksobv31dobtv0cs1pv9e.apps.googleusercontent.com';
 
     private scope = [
         'profile',
@@ -30,7 +30,7 @@ export class GoogleSigninComponent implements AfterViewInit {
     }
 
     public googleInit() {
-        let that = this;
+        const that = this;
         gapi.load('auth2', function () {
             that.auth2 = gapi.auth2.init({
                 client_id: that.clientId,
@@ -41,15 +41,14 @@ export class GoogleSigninComponent implements AfterViewInit {
         });
     }
     public attachSignin(element) {
-        let that = this;
+        const that = this;
         this.auth2.attachClickHandler(element, {},
             function (googleUser) {
-                //YOUR CODE HERE
-                let token = googleUser.getAuthResponse().access_token;
+                const token = googleUser.getAuthResponse().access_token;
                 that.authService.googleSignin(token).subscribe(data => {
                     if (data.token) {
                         localStorage.setItem('currentUser', JSON.stringify(data.token));
-                        window.location.href = `${window.location.origin}/#/app`
+                        window.location.href = `${window.location.origin}/#/app`;
                         // that.router.navigate(['/app/']);
                     }
                 });
@@ -63,5 +62,4 @@ export class GoogleSigninComponent implements AfterViewInit {
         // Revoke the access token.
         this.auth2.disconnect();
     }
-    
 }

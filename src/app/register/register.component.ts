@@ -4,6 +4,7 @@ import { PatternValidator } from '@angular/forms';
 import { AppService } from '../Services/App/app.service';
 import { AuthService } from '../Services/Auth/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
   };
   constructor(private appService: AppService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toasterService: ToastrService
   ) { }
 
   ngOnInit() {
@@ -34,11 +36,12 @@ export class RegisterComponent implements OnInit {
   register() {
     this.authService.register(this.auth).subscribe(data => {
       if (data.success) {
+        this.toasterService.success('User successfully registered');
         this.router.navigate(['/login']);
       }
     },
       error => {
-        console.log(`error occured in register() - ${JSON.stringify(error)}`);
-      })
+        this.toasterService.error(error['error']);
+      });
   }
 }
